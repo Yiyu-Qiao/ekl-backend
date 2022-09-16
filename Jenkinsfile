@@ -4,6 +4,7 @@ pipeline {
         stage('checkout Git') {
             steps {
                 sh "echo hello jenkins"
+                sh "echo hello git"
             }
         }
     }
