@@ -6,6 +6,7 @@ pipeline {
                 sh "echo hello jenkins"
                 sh "echo hello git"
                 sh "echo hello git remote"
+		sh "echo hello git test reset password"
             }
         }
     }
