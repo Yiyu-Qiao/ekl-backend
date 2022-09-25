@@ -9,6 +9,7 @@ pipeline {
 		sh "echo hello git test reset password"
 		sh "echo echo echo echo  echo hello git test reset password with config"
 		sh "echo echo echo and echo"
+		sh "some new echo"
             }
         }
     }
