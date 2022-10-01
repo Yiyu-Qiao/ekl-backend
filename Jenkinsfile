@@ -6,14 +6,8 @@ pipeline {
                 sh 'echo check out from Github Repository ${GIT_URL}'
                 sh 'echo current branch ${GIT_BRANCH}'
                 sh 'git fetch origin ${GIT_BRANCH}'
-                sh 'git branch -D ${GIT_BRANCH}'
-                sh 'git checkout -b ${GIT_BRANCH} origin/${GIT_BRANCH}'
-            }
-        }
-
-        stage('reset build environment'){
-            steps {
-                sh 'git branch -D dev'
+                sh 'git checkout ${GIT_BRANCH}'
+                sh 'mvn clean package'
             }
         }
     }
