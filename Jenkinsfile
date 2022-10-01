@@ -11,7 +11,9 @@ pipeline {
         }
 
         stage('reset build environment'){
-            sh 'git branch -D dev'
+            steps {
+                sh 'git branch -D dev'
+            }
         }
     }
 }
