@@ -9,5 +9,9 @@ pipeline {
                 sh 'git checkout -b ${GIT_BRANCH} origin/${GIT_BRANCH}'
             }
         }
+
+        stage('reset build environment'){
+            sh 'git branch -D dev'
+        }
     }
 }
