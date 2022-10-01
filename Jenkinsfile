@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('Init Git') {
             steps {
-                sh 'echo check out from Github Repository ${GIT_URL}'
-                sh 'echo current branch ${GIT_BRANCH}'
+                sh '''echo check out from Github Repository ${GIT_URL}
+                      echo current branch ${GIT_BRANCH}'''
             }
         }
 
