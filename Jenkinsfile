@@ -13,7 +13,11 @@ pipeline {
 
         stage('Maven build'){
             steps {
-                sh 'mvn clean install'
+                /** sh 'mvn clean install' **/
+                sh """
+                   #!/usr/bin/bash
+                   source ./script/mvn-clean-install.sh
+                """
             }
         }
 
