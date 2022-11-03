@@ -1,8 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven 'apache-maven-3.8.7'
-        jdk 'OpenJDK-11'
+        maven 'apache-maven-3.8.6'
     }
     stages {
         stage('Init Git') {
