@@ -16,11 +16,9 @@ pipeline {
 
         stage('Maven build'){
             steps {
-                /** sh 'mvn clean install' **/
-                sh """
-                   #!/usr/bin/bash
-                   source ./script/mvn-clean-install.sh
-                """
+                configFileProvider([configFile(fileId: 'global-maven-setting', variable: 'MAVEN_SETTINGS')]){
+                    sh 'mvn -s $MAVEN_SETTINGS clean install'
+                }
             }
         }
 
