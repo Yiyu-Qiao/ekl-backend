@@ -37,7 +37,10 @@ pipeline {
             steps {
                 withCredentials([file(credentialsId:'pk-jenkins-user',variable: 'idjenkinsuser')]){
                     sh """
-                        ssh -i $idjenkinsuser
+                        ssh -i $idjenkinsuser jenkins-user@192.168.178.62
+                        pwd
+                        id
+                        hostname
                         #!/usr/bin/bash
                         source ./script/deploy-ekl-backend.sh
                     """
