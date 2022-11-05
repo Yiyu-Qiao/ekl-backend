@@ -41,7 +41,7 @@ pipeline {
                         remote_ekl_backend.host = '192.168.178.62'
                         remote_ekl_backend.allowAnyHosts = true
                         remote_ekl_backend.user = 'jenkins-user'
-                        remote_ekl_backend.identifyFile = idjenkinsuser
+                        remote_ekl_backend.password = '12345'
                         sshCommand remote: remote_ekl_backend, command: 'id'
                         sshCommand remote: remote_ekl_backend, command: 'ls -la'
                         sshRemove remote: remote_ekl_backend, path: '/home/jenkins-user/tmp/ekl-backend/ekl-backend-0.0.1-SNAPSHOT.jar'
