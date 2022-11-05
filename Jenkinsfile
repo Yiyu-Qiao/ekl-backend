@@ -35,7 +35,7 @@ pipeline {
 
         stage('Deploy ekl-backend'){
             steps {
-                withCredentials([sshUserPrivateKey(credentialsId:'jenkins-user',keyFileVariable: 'id-jenkins-user',usernameVariable: 'jenkins-user')]){
+                withCredentials([file(credentialsId:'pk-jenkins-user',variable: 'id-jenkins-user')]){
                     sh """
                         #!/usr/bin/bash
                         source ./script/deploy-ekl-backend.sh
