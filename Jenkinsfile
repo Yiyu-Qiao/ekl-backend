@@ -3,6 +3,11 @@ pipeline {
     tools {
         maven 'apache-maven-3.8.6'
     }
+    def remote_ekl_backend = [:]
+    remote_ekl_backend.name = 'Intel-NUC-1'
+    remote_ekl_backend.host = '192.168.178.62'
+    remote_ekl_backend.allowedAnyHosts = true
+
     stages {
         stage('Init Git') {
             steps {
@@ -36,10 +41,6 @@ pipeline {
         stage('Deploy ekl-backend'){
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId:'credentialJenkinsUser',keyFileVariable: 'idjenkinsuser')]){
-                   def remote_ekl_backend = [:]
-                   remote_ekl_backend.name = 'Intel-NUC-1'
-                   remote_ekl_backend.host = '192.168.178.62'
-                   remote_ekl_backend.allowedAnyHosts = true
                    remote_ekl_backend.user = 'jenkins-user'
                    remote_ekl_backend.identifyFile = ${idjenkinsuser}
                    sshRemove remote: remote_ekl_backend, path: '/home/jenkins-user/tmp/ekl-backend/ekl-backend-0.0.1-SNAPSHOT.jar'
