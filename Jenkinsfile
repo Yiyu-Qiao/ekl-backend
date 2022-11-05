@@ -4,7 +4,7 @@ pipeline {
         maven 'apache-maven-3.8.6'
     }
     environment {
-        remote_ekl_backend = [:]
+        def remote_ekl_backend = [:]
         remote_ekl_backend.name = 'Intel-NUC-1'
         remote_ekl_backend.host = '192.168.178.62'
         remote_ekl_backend.allowedAnyHosts = true
