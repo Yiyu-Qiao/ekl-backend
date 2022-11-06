@@ -43,6 +43,7 @@ pipeline {
                 }
             }
         }
+        
         stage('Deploy ekl-backend'){
             steps {
                 //withCredentials([usernamePassword(credentialsId:'SSH_Jenkins_User', usernameVariable: 'username', passwordVariable: 'password')]){
@@ -57,6 +58,9 @@ pipeline {
                         sshCommand remote: remote_ekl_backend, command: 'ls -la'
                         sshPut remote: remote_ekl_backend, from: 'target/ekl-backend-0.0.1-SNAPSHOT.jar', into: "${path_ekl_backend_artefact}"
                         sshCommand remote: remote_ekl_backend, command: "ls -la ${path_ekl_backend_artefact}/ekl-backend-0.0.1-SNAPSHOT.jar"
+                        sshPut remote: remote_ekl_backend, from: 'script/start_ekl_backend.sh', into: "${path_ekl_backend_artefact}/script/"
+                        sshScript remote: remote_ekl_backend, script: 'script/stop_ekl_backend.sh'
+                        sshScript remote: remote_ekl_backend, script: 'script/start_silent_ekl_backend.sh'
                     }
                 //}
             }
