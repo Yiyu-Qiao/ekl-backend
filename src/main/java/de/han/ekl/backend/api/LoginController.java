@@ -17,6 +17,7 @@ public class LoginController {
         user.setLastname(lastname);
         user.setFirstname (firstname);
         user.setIsLogin(true);
+        user.setMsg("Hello "+user.getFirstname()+ " " + user.getLastname());
         return ResponseEntity.ok(user);
     }
 }
