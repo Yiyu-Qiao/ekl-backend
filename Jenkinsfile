@@ -55,12 +55,15 @@ pipeline {
                         remote_ekl_backend.password = remote_ekl_backend_password
 //                         remote_ekl_backend.user = 'jenkins-user'
 //                         remote_ekl_backend.password = '12345'
-                        echo "${remote_ekl_backend_username}"
-                        echo "${remote_ekl_backend_password}"
-                        echo "${MYVARNAME_USR}"
-                        echo "${MYVARNAME_PSW}"
-                        echo "${remote_ekl_backend.user}"
-                        echo "${remote_ekl_backend.password}"
+                        echo "remote_ekl_backend_name:${remote_ekl_backend_name}"
+                        echo "remote_ekl_backend_host:${remote_ekl_backend_host}"
+                        echo "remote_ekl_backend_username:${remote_ekl_backend_username}"
+                        echo "remote_ekl_backend_password:${remote_ekl_backend_password}"                        
+                        echo "remote_ekl_backend.user:${remote_ekl_backend.user}"
+                        echo "remote_ekl_backend.password:${remote_ekl_backend.password}"
+                        echo "credential_ssh_jenkins_user:${credential_ssh_jenkins_user}"
+                        echo "MYVARNAME_USR:${MYVARNAME_USR}"
+                        echo "MYVARNAME_PSW:${MYVARNAME_PSW}"
                         sshCommand remote: remote_ekl_backend, command: 'hostname'
                         sshCommand remote: remote_ekl_backend, command: 'ls -la'
                         sshPut remote: remote_ekl_backend, from: 'target/ekl-backend-0.0.1-SNAPSHOT.jar', into: "${path_ekl_backend_artefact}"
