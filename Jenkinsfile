@@ -6,7 +6,7 @@ pipeline {
     environment {
         remote_ekl_backend_name = 'Intel-NUC-1'
         remote_ekl_backend_host = '192.168.178.62'
-        credential_ssh_jenkins_user = credentials(SSH_Jenkins_User)
+        credential_ssh_jenkins_user = credentials('SSH_Jenkins_User')
         remote_ekl_backend_username = "${MYVARNAME_USR}"
         remote_ekl_backend_password = "${MYVARNAME_PWD}"
 
