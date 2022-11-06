@@ -56,11 +56,11 @@ pipeline {
                         remote_ekl_backend.password = remote_ekl_backend_password
                         sshCommand remote: remote_ekl_backend, command: 'hostname'
                         sshCommand remote: remote_ekl_backend, command: 'ls -la'                        
-                        sshScript remote: remote_ekl_backend, script: 'script/stop_ekl_backend.sh'
+                        sshScript remote: remote_ekl_backend, script: 'script/stop-ekl-backend.sh'
                         sshPut remote: remote_ekl_backend, from: 'target/ekl-backend-0.0.1-SNAPSHOT.jar', into: "${path_ekl_backend_artefact}/"
                         sshCommand remote: remote_ekl_backend, command: "ls -la ${path_ekl_backend_artefact}/ekl-backend-0.0.1-SNAPSHOT.jar"
-                        sshPut remote: remote_ekl_backend, from: 'script/start_ekl_backend.sh', into: "${path_ekl_backend_artefact}/script/"
-                        sshScript remote: remote_ekl_backend, script: 'script/start_silent_ekl_backend.sh'
+                        sshPut remote: remote_ekl_backend, from: 'script/start-ekl-backend.sh', into: "${path_ekl_backend_artefact}/script/"
+                        sshScript remote: remote_ekl_backend, script: 'script/start-silent-ekl-backend.sh'
                     }
                 //}
             }
