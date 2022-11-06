@@ -4,7 +4,7 @@ pipeline {
         maven 'apache-maven-3.8.6'
     }
     environment {
-        remote_ekl_backend_name = 'Intel-NUC-1'
+        remote_ekl_backend_name = 'Desktop-AMD'
         remote_ekl_backend_host = '192.168.178.62'
         credential_ssh_jenkins_user = credentials('SSH_Jenkins_User')
         remote_ekl_backend_username = "${MYVARNAME_USR}"
@@ -49,8 +49,10 @@ pipeline {
                         remote_ekl_backend.name = remote_ekl_backend_name
                         remote_ekl_backend.host = remote_ekl_backend_host
                         remote_ekl_backend.allowAnyHosts = true
-                        remote_ekl_backend.user = remote_ekl_backend_username
-                        remote_ekl_backend.password = remote_ekl_backend_password
+//                         remote_ekl_backend.user = remote_ekl_backend_username
+//                         remote_ekl_backend.password = remote_ekl_backend_password
+                        remote_ekl_backend.user = 'jenkins-user'
+                        remote_ekl_backend.password = '12345'
                         sshCommand remote: remote_ekl_backend, command: 'hostname'
                         sshCommand remote: remote_ekl_backend, command: 'ls -la'
                         sshPut remote: remote_ekl_backend, from: 'target/ekl-backend-0.0.1-SNAPSHOT.jar', into: "${path_ekl_backend_artefact}"
