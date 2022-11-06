@@ -45,7 +45,7 @@ pipeline {
                         sshCommand remote: remote_ekl_backend, command: 'id'
                         sshCommand remote: remote_ekl_backend, command: 'hostname'
                         sshCommand remote: remote_ekl_backend, command: 'ls -la'
-                        sshRemove remote: remote_ekl_backend, path: '/home/jenkins-user/tmp/ekl-backend/ekl-backend-0.0.1-SNAPSHOT.jar'
+                        //sshRemove remote: remote_ekl_backend, path: '/home/jenkins-user/tmp/ekl-backend/ekl-backend-0.0.1-SNAPSHOT.jar'
                         sshPut remote: remote_ekl_backend, from: 'target/ekl-backend-0.0.1-SNAPSHOT.jar', into: '/home/jenkins-user/tmp/ekl-backend/'
                     }
                 }
