@@ -15,14 +15,15 @@ public class LoginController {
 
     @Autowired
     ApplicationContext ctx;
-    @GetMapping(path= "/userlogin/{firstname}/{lastname}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> userLogin(@PathVariable String firstname, @PathVariable String lastname){
+
+    @GetMapping(path= "/api/auth/login", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> userLogin(){
 
         User user = new User();
-        user.setLastname(lastname);
-        user.setFirstname (firstname);
+        user.setLastname("Han");
+        user.setFirstname ("Qiao");
         user.setIsLogin(true);
-        user.setMsg("Hello "+user.getFirstname()+ " " + user.getLastname());
+        user.setMsg("Haallooooooooo: "+user.getFirstname()+ " " + user.getLastname());
         String path = ctx.getEnvironment().getProperty("Path");
         System.out.println("Name environment implementation : " + ctx.getEnvironment().getClass().getName());
         System.out.println("evn : " + ctx.getEnvironment().getProperty("env"));
