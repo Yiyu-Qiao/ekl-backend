@@ -12,4 +12,5 @@ public class User {
     private String lastname;
     private Boolean isLogin;
     private String msg;
+    private String path;
 }
