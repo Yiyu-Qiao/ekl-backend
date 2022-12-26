@@ -2,7 +2,6 @@ package de.han.ekl.backend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -20,10 +19,15 @@ public class EklSecurityConfiguration {
         var rst = http.authorizeHttpRequests(request -> {
                     request.requestMatchers("/api/auth/**").permitAll();
                     request.requestMatchers("/api/**").authenticated();
-                    request.anyRequest().denyAll();
+                    request.anyRequest().permitAll();
                 })
-               // .formLogin(Customizer.withDefaults())
-                .httpBasic(Customizer.withDefaults())
+                .formLogin(configurer -> {
+                    configurer.usernameParameter("user");
+                    configurer.passwordParameter("pwd");
+//                    configurer.successForwardUrl("/api/user/123456789");
+                    configurer.loginPage("/login");
+                })
+//                .httpBasic(Customizer.withDefaults())
                 .csrf().disable()
                 .build();
         return rst;
@@ -32,12 +36,12 @@ public class EklSecurityConfiguration {
     @Bean
     public UserDetailsService users() {
         UserDetails user = User.builder()
-                .username("user")
+                .username("han")
                 .password("{noop}12345")
                 .roles("USER")
                 .build();
         UserDetails admin = User.builder()
-                .username("admin")
+                .username("yu")
                 .password("{noop}12345")
                 .roles("USER", "ADMIN")
                 .build();
