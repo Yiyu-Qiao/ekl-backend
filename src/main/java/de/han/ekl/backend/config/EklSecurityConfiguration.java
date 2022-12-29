@@ -17,16 +17,16 @@ public class EklSecurityConfiguration {
     @Bean
     public SecurityFilterChain securityConfigure(HttpSecurity http) throws Exception {
         var rst = http.authorizeHttpRequests(request -> {
-                    request.requestMatchers("/api/auth/**").permitAll();
+                    request.requestMatchers("/api/auth/login").permitAll();
                     request.requestMatchers("/api/**").authenticated();
                     request.anyRequest().permitAll();
                 })
-                .formLogin(configurer -> {
-                    configurer.usernameParameter("user");
-                    configurer.passwordParameter("pwd");
-//                    configurer.successForwardUrl("/api/user/123456789");
-                    configurer.loginPage("/login");
-                })
+//                .formLogin(configurer -> {
+//                    configurer.usernameParameter("user");
+//                    configurer.passwordParameter("pwd");
+////                    configurer.successForwardUrl("/api/user/123456789");
+//                    configurer.loginPage("/login");
+//                })
 //                .httpBasic(Customizer.withDefaults())
                 .csrf().disable()
                 .build();
@@ -43,7 +43,7 @@ public class EklSecurityConfiguration {
         UserDetails admin = User.builder()
                 .username("yu")
                 .password("{noop}12345")
-                .roles("USER", "ADMIN")
+                .roles("ADMIN")
                 .build();
         return new InMemoryUserDetailsManager(user, admin);
     }
