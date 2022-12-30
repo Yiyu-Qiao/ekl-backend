@@ -19,6 +19,7 @@ public class UserRepository {
         user.setFirstname(id);
         user.setLastname(id);
         user.setBirthday(LocalDate.now());
+        user.setUsername(id);
         return Optional.of(user);
     }
 }
